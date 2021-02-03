@@ -2,7 +2,7 @@
 
 let UserSession = require('./UserSession');
 let TripDAO = require('./TripDAO');
-
+const { isEqual } = require('lodash');
 class TripService {
     getTripsByUser(user) {
         let tripList = [];
@@ -12,7 +12,7 @@ class TripService {
             let friends = user.getFriends();
             for (let i=0; i < friends.length; i++) {
                 let friend = friends[i];
-                if (friend == loggedUser) {
+                if (isEqual(friend,loggedUser)) {
                     isFriend = true;
                     break;
                 }

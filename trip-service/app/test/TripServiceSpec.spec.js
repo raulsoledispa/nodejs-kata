@@ -7,6 +7,10 @@ const UserSession = require('../src/UserSession');
 const User = require('../src/User');
 const TripDAO = require('../src/TripDAO');
 let tripService;
+const LOGGED_USER = new User();
+const GUEST = null;
+const BOB = new User();
+
 describe('TripService', () => {
 
     beforeEach(() => {
@@ -14,7 +18,7 @@ describe('TripService', () => {
     })
 
     it('should throw on error when user is not logged in', () => {
-        UserSession.getLoggedUser.mockReturnValue(null);
+        UserSession.getLoggedUser.mockReturnValue(GUEST);
         expect(() => {
             tripService.getTripsByUser(null)
         }).toThrow(/User not logged in/);
@@ -22,11 +26,8 @@ describe('TripService', () => {
 
     
     it('should not return any trips when users are not friends', () => {
-        UserSession.getLoggedUser.mockReturnValue('Soul');
-        let user = new User();
-        user.addFriend('Raul');
-        user.addTrip('Ecuador');
-        user.addTrip('Colombia');
+        UserSession.getLoggedUser.mockReturnValue(LOGGED_USER);
+        const user = new User();
 
         tripService = new TripService();
         const friends = tripService.getTripsByUser(user);
@@ -35,19 +36,17 @@ describe('TripService', () => {
     
 
     
-    it('should return friend trips when users are friends', () => {
-        UserSession.getLoggedUser.mockReturnValue('Soul');
+    it('should return trips when users are friends', () => {
+        UserSession.getLoggedUser.mockReturnValue(LOGGED_USER);
         TripDAO.findTripsByUser.mockReturnValue(['Ecuador','Colombia']);
         
         let user = new User();
-        user.addFriend('Raul');
-        user.addFriend('Soul');
-        user.addTrip('Ecuador');
-        user.addTrip('Colombia');
+        user.addFriend(BOB);
+        user.addFriend(LOGGED_USER);
 
         tripService = new TripService();
         const friends = tripService.getTripsByUser(user);
         expect(friends).toHaveLength(2);
-    })
+    });
 
 });

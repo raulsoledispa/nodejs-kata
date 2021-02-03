@@ -11,12 +11,12 @@ module.exports = class User {
         return this._friends;
     }
 
-    addFriend(name){
-        this._friends.push(name);
+    addFriend(user){
+        this._friends.push(user);
     }
 
-    addTrip(name){
-        this._trips = name;
+    addTrip(trip){
+        this._trips.push(trip);
     }
 
     getTrips(){

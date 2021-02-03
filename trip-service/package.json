@@ -19,5 +19,8 @@
   "homepage": "https://github.com/sandromancuso/trip-service-kata",
   "devDependencies": {
     "jest": "^26.6.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
   }
 }
