@@ -1,5 +1,5 @@
 "use strict";
-
+const { isEqual } = require('lodash')
 module.exports = class User {
 
     constructor(){
@@ -21,5 +21,9 @@ module.exports = class User {
 
     getTrips(){
         return this._trips;
+    }
+
+    isFriendWith(user){
+        return this._friends.find(friend => isEqual(friend,user));
     }
 }
