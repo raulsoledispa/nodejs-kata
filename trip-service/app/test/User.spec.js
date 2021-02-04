@@ -1,7 +1,5 @@
 const User = require("../src/User");
 
-const LOGGED_USER = new User();
-const GUEST = null;
 const BOB = new User();
 const PAUL = new User();
 

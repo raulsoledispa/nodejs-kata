@@ -10,6 +10,7 @@ let tripService;
 const LOGGED_USER = new User();
 const GUEST = null;
 const BOB = new User();
+const PAUL = new User();
 
 describe('TripService', () => {
 
@@ -17,7 +18,7 @@ describe('TripService', () => {
         tripService = new TripService();
     })
 
-    it('should throw on error when user is not logged in', () => {
+    it('should throw an error when user is not logged in', () => {
         UserSession.getLoggedUser.mockReturnValue(GUEST);
         expect(() => {
             tripService.getTripsByUser(null)
@@ -42,6 +43,7 @@ describe('TripService', () => {
         
         let user = new User();
         user.addFriend(BOB);
+        user.addFriend(PAUL);
         user.addFriend(LOGGED_USER);
 
         tripService = new TripService();
