@@ -1,22 +1,11 @@
 {
-  "name": "trip-service-kata",
+  "name": "trip-service",
   "version": "1.0.0",
   "description": "Kata for a legacy code hands-on session. The objective is to write tests and refactor the given legacy code.",
   "scripts": {
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sandromancuso/trip-service-kata.git"
-  },
-  "keywords": [
-    "kata"
-  ],
-  "author": "Christoph Neuroth <christoph.neuroth@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/sandromancuso/trip-service-kata/issues"
-  },
-  "homepage": "https://github.com/sandromancuso/trip-service-kata",
+  "author": "Raúl Soledispa",
   "devDependencies": {
     "jest": "^26.6.3"
   },
