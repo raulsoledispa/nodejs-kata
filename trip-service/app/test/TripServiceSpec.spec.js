@@ -19,26 +19,23 @@ describe('TripService', () => {
     })
 
     it('should throw an error when user is not logged in', () => {
-        UserSession.getLoggedUser.mockReturnValue(GUEST);
         expect(() => {
-            tripService.getTripsByUser(null)
+            tripService.getTripsByUser(null,GUEST);
         }).toThrow(/User not logged in/);
     });
 
     
     it('should not return any trips when users are not friends', () => {
-        UserSession.getLoggedUser.mockReturnValue(LOGGED_USER);
         const user = new User();
 
         tripService = new TripService();
-        const friends = tripService.getTripsByUser(user);
+        const friends = tripService.getTripsByUser(user,LOGGED_USER);
         expect(friends).toHaveLength(0);
     });
     
 
     
     it('should return trips when users are friends', () => {
-        UserSession.getLoggedUser.mockReturnValue(LOGGED_USER);
         TripDAO.findTripsByUser.mockReturnValue(['Ecuador','Colombia']);
         
         let user = new User();
@@ -47,7 +44,7 @@ describe('TripService', () => {
         user.addFriend(LOGGED_USER);
 
         tripService = new TripService();
-        const friends = tripService.getTripsByUser(user);
+        const friends = tripService.getTripsByUser(user,LOGGED_USER);
         expect(friends).toHaveLength(2);
     });
 

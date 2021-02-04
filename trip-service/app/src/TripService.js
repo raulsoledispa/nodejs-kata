@@ -3,8 +3,7 @@
 let UserSession = require('./UserSession');
 let TripDAO = require('./TripDAO');
 class TripService {
-    getTripsByUser(user) {
-        let loggedUser = UserSession.getLoggedUser();
+    getTripsByUser(user,loggedUser) {
 
         if(loggedUser == null)
             throw new Error('User not logged in.');
